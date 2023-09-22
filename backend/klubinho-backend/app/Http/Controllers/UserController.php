@@ -21,4 +21,10 @@ class UserController extends Controller
 
         return response()->json($user);
     }
+
+    public function showUserByEmail($email)
+    {
+        $user = User::where('email', $email)->first();
+        return response()->json($user);
+    }
 }
