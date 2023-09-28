@@ -1,21 +1,16 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ClubController;
+use App\Http\Controllers\AuthController;
 
-Route::post('/user', [UserController::class, 'create']);
 
-Route::get('/user/{email}', [UserController::class, 'showUserByEmail']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
-// Create a new route for the club controller
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
-Route::post('/club', [ClubController::class, 'create']);
 
-Route::get('/club/{club_name}', [ClubController::class, 'showClubByClubName']);
-
-Route::put('/club/{id}', [ClubController::class, 'updateById']);
-
-Route::put('/club/{club_name}', [ClubController::class, 'updateByClubName']);
-
-Route::delete('/club/{id}', [ClubController::class, 'deleteById']);
