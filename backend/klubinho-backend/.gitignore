@@ -18,39 +18,3 @@ yarn-error.log
 /.idea
 /.vscode
 
-# Arquivos e diretórios gerados automaticamente
-/vendor/
-/node_modules/
-/public/hot
-/public/storage
-/storage/*.key
-/storage/*.pem
-/storage/*.crt
-/storage/*.csr
-
-# Dependências Composer
-composer.lock
-
-# Configurações de ambiente
-.env
-
-# Logs e caches
-/storage/logs/
-/storage/framework/
-/storage/app/
-
-# Arquivos de build
-Homestead.json
-Homestead.yaml
-npm-debug.log
-yarn-error.log
-
-# Arquivos de configuração de IDEs
-.idea/
-.vscode/
-*.sublime-*
-*.swp
-
-# Arquivos de configuração específicos do sistema
-.DS_Store
-Thumbs.db
