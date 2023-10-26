@@ -11,7 +11,6 @@ return new class extends Migration
         Schema::create('clubs', function (Blueprint $table) {
             $table->id();
             $table->string('name')->notNullable();
-            $table->id('club_id')->unique()->autoIncrement();
             $table->string('nick_club')->notNullable();
             $table->string('description');
             $table->string('banner');
@@ -19,9 +18,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('clubs');
