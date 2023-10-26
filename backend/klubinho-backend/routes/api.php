@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClubController;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -11,6 +12,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-
+// rotas para cadastro do clube 
+Route::post('/club/register', [ClubController::class, 'registerClub'])->middleware('auth:sanctum');
