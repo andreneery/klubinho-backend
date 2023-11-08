@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
     // creste a post
     public function createPost(Request $request)
     {
+        $token = string;
         $post = new Post;
-        $post->club_id = $request->club_id;
         $post->content = $request->content;
-        $post->save();
+        $token = $request->token;
+        $foreignId = User::findIdByToken($token);
+        $post->save();;
 
         return response()->json([
             "message" => "Post record created"

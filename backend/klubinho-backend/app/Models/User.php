@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Post;
 
 class User extends Authenticatable
 {
@@ -37,5 +40,17 @@ class User extends Authenticatable
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+
+    // find user id by token
+    public static function findIdByToken($token){
+        // token for string to token for object
+        $token = explode(' ', $token)[1];
+        $user = User::where('id', Auth::user()->id)->first();
+        return $user->id;
     }
 }

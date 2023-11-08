@@ -12,8 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->notNullable();
             $table->string('nick_club')->notNullable();
-            $table->string('description');
-            $table->string('banner');
+            $table->string('description')->nullable();
+            $table->string('banner')->nullable();
             $table->timestamps();
         });
     }

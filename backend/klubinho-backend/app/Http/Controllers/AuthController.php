@@ -66,4 +66,11 @@ class AuthController extends Controller
         return response()->json(['token' => $token->plainTextToken]);
     }
 
+    //get user id by token
+    public function getUserIdByToken(Request $request)
+    {
+        $user = $request->user();
+        return response()->json(['user_id' => $user->id]);
+    }
+
 }
