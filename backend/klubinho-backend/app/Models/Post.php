@@ -11,7 +11,8 @@ class Post extends Model
 
     protected  $fillable = [
         'id',
-        'foreignId',
-        'text'
+        'user_id',
+        'club_id',
+        'content'
     ];
 }
