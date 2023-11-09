@@ -20,6 +20,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::post('/club/register', [ClubController::class, 'registerClub'])->middleware('auth:sanctum');
 
 // rotas para o post
-Route::post('/post/create', [PostController::class, 'createPost'])->middleware('auth:sanctum');
-Route::post('/post/delete/{id}', [PostController::class, 'deletePost'])->middleware('auth:sanctum');
+Route::post('/post/create', [PostController::class, 'createPost']);
+Route::post('/post/delete/{id}', [PostController::class, 'deletePost']);
+Route::get('/post/getAllPostByUser/{id}', [PostController::class, 'getAllPostByUser']);
+Route::get('/post/getAllPostByClub/{id}', [PostController::class, 'getAllPostByClub']);
 

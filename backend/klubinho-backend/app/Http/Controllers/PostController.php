@@ -11,13 +11,11 @@ class PostController extends Controller
     // creste a post
     public function createPost(Request $request)
     {
-        $token = string;
         $post = new Post;
+        $post->user_id = $request->user_id;
+        $post->club_id = $request->club_id;
         $post->content = $request->content;
-        $token = $request->token;
-        $foreignId = User::findIdByToken($token);
-        $post->save();;
-
+        $post->save();
         return response()->json([
             "message" => "Post record created"
         ], 201);
@@ -33,6 +31,32 @@ class PostController extends Controller
             return response()->json([
                 "message" => "Post deleted"
             ], 202);
+        } else {
+            return response()->json([
+                "message" => "Post not found"
+            ], 404);
+        }
+    }
+
+    // geat all post by user
+    public function getAllPostByUser($id)
+    {
+        if(Post::where('id', $id)->exists()) {
+            $post = Post::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($post, 200);
+        } else {
+            return response()->json([
+                "message" => "Post not found"
+            ], 404);
+        }
+    }
+
+    // get all post by club_id
+    public function getAllPostByClub($id)
+    {
+        if(Post::where('id', $id)->exists()) {
+            $post = Post::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($post, 200);
         } else {
             return response()->json([
                 "message" => "Post not found"
