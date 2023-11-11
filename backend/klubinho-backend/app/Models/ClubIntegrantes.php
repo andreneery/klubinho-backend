@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Integrantes extends Model
+class ClubIntegrantes extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'user_id',
         'club_id',
-        'role'
+        'role',
     ];
 }

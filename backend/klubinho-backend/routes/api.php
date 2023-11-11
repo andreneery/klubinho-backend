@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ClubIntegrantesController;
 
 
 
@@ -14,7 +15,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::post('/logout', [AuthController::class, 'logout']);
 
 // rotas para cadastro do clube 
 Route::post('/club/register', [ClubController::class, 'registerClub'])->middleware('auth:sanctum');
@@ -25,3 +26,6 @@ Route::post('/post/delete/{id}', [PostController::class, 'deletePost']);
 Route::get('/post/getAllPostByUser/{id}', [PostController::class, 'getAllPostByUser']);
 Route::get('/post/getAllPostByClub/{id}', [PostController::class, 'getAllPostByClub']);
 
+// clubIntegrantes
+Route::post('/clubIntegrantes/create', [ClubIntegrantesController::class, 'create']);
+Route::get('/clubIntegrantes/getClubIntegrantes/{club_id}', [ClubIntegrantesController::class, 'getAllIntegrantesByClub']);

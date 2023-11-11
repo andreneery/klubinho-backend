@@ -73,4 +73,27 @@ class AuthController extends Controller
         return response()->json(['user_id' => $user->id]);
     }
 
+    // update user profile picture
+    public function updateProfilePicture(Request $request)
+    {
+        $user = User::find($request->email);
+        $user->profile_picture = $request->profile_picture;
+        $user->save();
+        return response()->json([
+            "message" => "User profile picture updated"
+        ], 201);
+    }
+
+    // get user by email
+    public function getUserByEmail($email)
+    {
+        if (User::where('email', $email)->exists()) {
+            $user = User::where('email', $email)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($user, 200);
+        } else {
+            return response()->json([
+                "message" => "User not found"
+            ], 404);
+        }
+    }
 }
