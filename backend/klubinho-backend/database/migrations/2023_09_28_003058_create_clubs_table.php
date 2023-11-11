@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('clubs', function (Blueprint $table) {
             $table->id();
             $table->string('name')->notNullable();
-            $table->string('nick_club')->notNullable();
+            $table->string('nick_club')->notNullable()->unique();
             $table->string('description')->nullable();
             $table->string('banner')->nullable();
             $table->timestamps();

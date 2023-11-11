@@ -77,7 +77,7 @@ class AuthController extends Controller
     // update user profile picture
     public function updateProfilePicture(Request $request)
     {
-        $user = User::find($request->email);
+        $user = User::find($request->id);
         $user->profile_picture = $request->profile_picture;
         $user->save();
         return response()->json([
