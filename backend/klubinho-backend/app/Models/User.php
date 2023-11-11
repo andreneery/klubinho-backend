@@ -17,6 +17,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'last_name',
+        'profile_picture',
         'phone_number',
         'email',
         'password',
@@ -53,4 +54,10 @@ class User extends Authenticatable
         $user = User::where('id', Auth::user()->id)->first();
         return $user->id;
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }
