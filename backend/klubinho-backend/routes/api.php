@@ -6,8 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ClubIntegrantesController;
-
-
+use App\Http\Controllers\EnquetesController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -34,3 +33,7 @@ Route::get('/post/getAllPostByClub/{id}', [PostController::class, 'getAllPostByC
 Route::post('/clubIntegrantes/create', [ClubIntegrantesController::class, 'create']);
 Route::get('/clubIntegrantes/getClubIntegrantes/{club_id}', [ClubIntegrantesController::class, 'getAllIntegrantesByClub']);
 
+// enquete
+Route::post('/enquete/create', [EnquetesController::class, 'create']);
+Route::get('/enquete/getAllEnquetesByClub/{club_id}', [EnquetesController::class, 'getAllEnquetesByClub']);
+Route::post('/enquete/alterStatusEnquete/{id}', [EnquetesController::class, 'alterStatusEnquete']);
