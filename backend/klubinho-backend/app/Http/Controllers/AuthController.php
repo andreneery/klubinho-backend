@@ -84,16 +84,19 @@ class AuthController extends Controller
         ], 201);
     }
 
-    // get user by email
-    public function getUserByEmail($email)
+    // update user data
+    public function updateUserData(Request $request)
     {
-        if (User::where('email', $email)->exists()) {
-            $user = User::where('email', $email)->get()->toJson(JSON_PRETTY_PRINT);
-            return response($user, 200);
-        } else {
-            return response()->json([
-                "message" => "User not found"
-            ], 404);
-        }
+        $user = User::find($request->id);
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->phone_number = $request->phone_number;
+        $user->birthday_date = $request->birthday_date;
+        $user->email = $request->email;
+        $user->bio = $request->bio;
+        $user->save();
+        return response()->json([
+            "message" => "User data updated"
+        ], 201);
     }
 }
