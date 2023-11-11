@@ -13,6 +13,7 @@ class Club extends Model
         'name',
         'nick_club',
         'description',
-        'banner'
+        'banner',
+        'user_id'
     ];
 }

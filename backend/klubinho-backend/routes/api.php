@@ -23,6 +23,9 @@ Route::get('/user/getUser/{id}', [AuthController::class, 'getUser'])->middleware
 // users
 Route::get('/user/getAllUsersNames/{id}', [AuthController::class, 'getAllNameByClub']); // essa será usada para a aba de reuniao de participantes
 
+//upload de foto de perfil usuario
+Route::post('/user/uploadProfilePicture/{id}', [AuthController::class, 'updateProfilePicture']);
+
 // rotas para cadastro do clube 
 Route::post('/club/register', [ClubController::class, 'registerClub'])->middleware('auth:sanctum');
 
