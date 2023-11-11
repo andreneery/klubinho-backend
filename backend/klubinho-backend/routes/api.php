@@ -20,6 +20,9 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/user/update/{id}', [AuthController::class, 'updateUserData'])->middleware('auth:sanctum');
 Route::get('/user/getUser/{id}', [AuthController::class, 'getUser'])->middleware('auth:sanctum');
 
+// users
+Route::get('/user/getAllUsersNames/{id}', [AuthController::class, 'getAllNameByClub']); // essa será usada para a aba de reuniao de participantes
+
 // rotas para cadastro do clube 
 Route::post('/club/register', [ClubController::class, 'registerClub'])->middleware('auth:sanctum');
 
