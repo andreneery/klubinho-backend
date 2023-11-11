@@ -44,3 +44,9 @@ Route::get('/clubIntegrantes/getClubIntegrantesWithUser/{club_id}', [ClubIntegra
 Route::post('/enquete/create', [EnquetesController::class, 'create']);
 Route::get('/enquete/getAllEnquetesByClub/{club_id}', [EnquetesController::class, 'getAllEnquetesByClub']);
 Route::post('/enquete/alterStatusEnquete/{id}', [EnquetesController::class, 'alterStatusEnquete']);
+
+// rotas para a reuniao
+Route::post('/reuniao/create', [ReuniaoController::class, 'createReuniao']);
+Route::get('/reuniao/getAllReuniaoByClub/{club_id}', [ReuniaoController::class, 'getAllReuniaoByClub']);
+Route::post('/reuniao/createComment', [ReuniaoController::class, 'createComment']);
+Route::get('/reuniao/getAllCommentsByClub/{club_id}', [ReuniaoController::class, 'getAllCommentsByClub']);
