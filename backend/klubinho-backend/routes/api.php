@@ -17,6 +17,10 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
+// rota para alterar os dados do usuario
+Route::post('/user/update/{id}', [AuthController::class, 'updateUserData'])->middleware('auth:sanctum');
+Route::get('/user/getUser/{id}', [AuthController::class, 'getUser'])->middleware('auth:sanctum');
+
 // rotas para cadastro do clube 
 Route::post('/club/register', [ClubController::class, 'registerClub'])->middleware('auth:sanctum');
 
@@ -29,3 +33,4 @@ Route::get('/post/getAllPostByClub/{id}', [PostController::class, 'getAllPostByC
 // clubIntegrantes
 Route::post('/clubIntegrantes/create', [ClubIntegrantesController::class, 'create']);
 Route::get('/clubIntegrantes/getClubIntegrantes/{club_id}', [ClubIntegrantesController::class, 'getAllIntegrantesByClub']);
+
