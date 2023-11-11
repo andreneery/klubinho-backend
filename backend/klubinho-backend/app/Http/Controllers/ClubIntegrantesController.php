@@ -33,6 +33,22 @@ class ClubIntegrantesController extends Controller
         }
     }
 
+    // get all integrantes with name, last_name and profile_picture by club_id
+    public function getAllIntegrantesWithUserByClub($club_id)
+    {
+        if (ClubIntegrantes::where('club_id', $club_id)->exists()) {
+            $clubIntegrantes = ClubIntegrantes::where('club_id', $club_id)
+            ->join('users', 'club_integrantes.user_id', '=', 'users.id')
+            ->select('club_integrantes.*', 'users.name', 'users.last_name', 'users.profile_picture')
+            ->get()->toJson(JSON_PRETTY_PRINT);
+            return response($clubIntegrantes, 200);
+        } else {
+            return response()->json([
+                "message" => "Club integrantes not found"
+            ], 404);
+        }
+    }
+
     // update a club integrante by user_id 
     public function updateClubIntegrante(Request $request, $user_id)
     {
