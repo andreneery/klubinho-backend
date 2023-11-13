@@ -27,7 +27,7 @@ Route::get('/user/getAllUsersNames/{id}', [AuthController::class, 'getAllNameByC
 Route::post('/user/uploadProfilePicture/{id}', [AuthController::class, 'updateProfilePicture']);
 
 // rotas para cadastro do clube 
-Route::post('/club/register', [ClubController::class, 'registerClub'])
+Route::post('/club/register', [ClubController::class, 'registerClub']);
 
 // rotas para o post
 Route::post('/post/create', [PostController::class, 'createPost']);
