@@ -22,7 +22,9 @@ class User extends Authenticatable
         'email',
         'password',
         'birthday_date',
-        'bio'
+        'bio',
+        'file_name',
+        'imagem',
     ];
 
     protected $hidden = [
