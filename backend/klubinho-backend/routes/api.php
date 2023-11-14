@@ -50,3 +50,7 @@ Route::post('/reuniao/create', [ReuniaoController::class, 'createReuniao']);
 Route::get('/reuniao/getAllReuniaoByClub/{club_id}', [ReuniaoController::class, 'getAllReuniaoByClub']);
 Route::post('/reuniao/createComment', [ReuniaoController::class, 'createComment']);
 Route::get('/reuniao/getAllCommentsByClub/{club_id}', [ReuniaoController::class, 'getAllCommentsByClub']);
+
+
+// rota para upload de foto 
+Route::post('/upload/{id}', [AuthController::class, 'uploadImagem']);

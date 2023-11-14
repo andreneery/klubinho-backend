@@ -118,4 +118,20 @@ class AuthController extends Controller
             ], 404);
         }
     }
+
+    // upload imagem picture
+    public function uploadImagem($id)
+    {
+        if (User::where('id', $id)->exists()) {
+            $user = User::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            $user = User::find($request->id);
+            $user->imagem = file_get_contents($request->file('imagem')->path());
+            $user->save();
+            return response("Imagem salva com sucesso!", 200);
+        } else {
+            return response()->json([
+                "message" => "User not found"
+            ], 404);
+        }
+    }
 }
