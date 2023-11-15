@@ -129,10 +129,18 @@ class AuthController extends Controller
             ], 404);
         }
 
-        $user->imagem = file_get_contents($request->file('imagem')->path());
-        $user->save();
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            $imagem = $request->file('imagem');
+            $path = $imagem->store('caminho/para/salvar'); // Substitua pelo caminho desejado
 
-        return response("Imagem salva com sucesso!", 200);
+            $user->imagem = $path;
+            $user->save();
+
+            return response("Imagem salva com sucesso!", 200);
+        }
+
+        return response()->json([
+            "message" => "Nenhum arquivo de imagem válido enviado."
+        ], 400);
     }
-
 }
