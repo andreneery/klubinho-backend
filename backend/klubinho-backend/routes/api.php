@@ -7,6 +7,7 @@ use App\Http\Controllers\ClubController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ClubIntegrantesController;
 use App\Http\Controllers\EnquetesController;
+use App\Http\Controllers\ReuniaoController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
