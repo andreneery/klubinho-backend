@@ -16,4 +16,8 @@ class Club extends Model
         'banner',
         'user_id'
     ];
+
+    public static $rules = [
+        'nick_club' => 'unique:clubs,nick_club',
+    ];
 }
