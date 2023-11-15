@@ -25,4 +25,17 @@ class ClubController extends Controller
             "club" => $club
         ], 201);
     }
+
+    // find club by nick_club and return club_id and name
+    public function findClubByNickClub($nick_club)
+    {
+        if (Club::where('nick_club', $nick_club)->exists()) {
+            $club = Club::where('nick_club', $nick_club)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($club, 200);
+        } else {
+            return response()->json([
+                "message" => "Club not found"
+            ], 404);
+        }
+    }
 }
