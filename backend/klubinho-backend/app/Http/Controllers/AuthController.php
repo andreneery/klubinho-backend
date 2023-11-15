@@ -123,7 +123,6 @@ class AuthController extends Controller
     public function uploadImagem($id)
     {
         if (User::where('id', $id)->exists()) {
-            $user = User::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
             $user = User::find($request->id);
             $user->imagem = file_get_contents($request->file('imagem')->path());
             $user->save();
