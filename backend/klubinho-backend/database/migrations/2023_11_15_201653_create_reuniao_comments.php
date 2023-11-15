@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->notNullable();
             $table->foreignId('club_id')->constrained('clubs')->onDelete('cascade')->notNullable();
+            $table->foreignId('reuniao_id')->constrained('reuniaos')->onDelete('cascade')->notNullable();
             $table->string('content')->notNullable();
             $table->timestamps();
         });

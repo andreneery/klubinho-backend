@@ -12,6 +12,7 @@ class ReuniaoComments extends Model
     protected $fillable = [
         'user_id',
         'club_id',
+        'reuniao_id',
         'content',
     ];
 }

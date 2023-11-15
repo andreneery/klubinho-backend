@@ -50,7 +50,8 @@ Route::post('/enquete/alterStatusEnquete/{id}', [EnquetesController::class, 'alt
 Route::post('/reuniao/create', [ReuniaoController::class, 'createReuniao']);
 Route::get('/reuniao/getAllReuniaoByClub/{club_id}', [ReuniaoController::class, 'getAllReuniaoByClub']);
 Route::post('/reuniao/createComment', [ReuniaoController::class, 'createComment']);
-Route::get('/reuniao/getAllCommentsByClub/{club_id}', [ReuniaoController::class, 'getAllCommentsByClub']);
+Route::get('/reuniao/getReuniao/{id}', [ReuniaoController::class, 'getReuniao']);
+Route::get('/reuniao/getAllCommentsByReuniao/{reuniao_id}', [ReuniaoController::class, 'getAllCommentsByReuniao']);
 
 
 // rota para upload de foto 
