@@ -7,7 +7,6 @@ use App\Models\ClubIntegrantes;
 
 class ClubIntegrantesController extends Controller
 {
-    // create a new club integrante
     public function create(Request $request)
     {
         $clubIntegrante = new ClubIntegrantes;
@@ -20,7 +19,6 @@ class ClubIntegrantesController extends Controller
         ], 201);
     }
 
-    // get all integrantes by club_id
     public function getAllIntegrantesByClub($club_id)
     {
         if (ClubIntegrantes::where('club_id', $club_id)->exists()) {
@@ -33,7 +31,6 @@ class ClubIntegrantesController extends Controller
         }
     }
 
-    // get all integrantes with name, last_name and imagem by club_id
     public function getAllIntegrantesWithUserByClub($club_id)
     {
         if (ClubIntegrantes::where('club_id', $club_id)->exists()) {
@@ -49,7 +46,6 @@ class ClubIntegrantesController extends Controller
         }
     }
 
-    // update a club integrante by user_id 
     public function updateClubIntegrante(Request $request, $user_id)
     {
         if (ClubIntegrantes::where('user_id', $user_id)->exists()) {

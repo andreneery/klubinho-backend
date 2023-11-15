@@ -14,7 +14,8 @@ class Club extends Model
         'nick_club',
         'description',
         'banner',
-        'user_id'
+        'user_id',
+        'banner_imagem'
     ];
 
     public static $rules = [

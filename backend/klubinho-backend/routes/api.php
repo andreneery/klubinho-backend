@@ -59,3 +59,9 @@ Route::post('/upload/{id}', [AuthController::class, 'uploadImagem']);
 
 // rota para pegar a imagem do usuario
 Route::get('/user/getImage/{id}', [AuthController::class, 'getImagem']);
+
+// rota para upload de banner_imagem no club
+Route::post('/uploadBanner/{id}', [ClubController::class, 'uploadImagem']);
+
+// rota para pegar a imagem do club
+Route::get('/club/getImage/{id}', [ClubController::class, 'getImagem']);
