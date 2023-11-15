@@ -131,7 +131,7 @@ class AuthController extends Controller
 
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
             $imagem = $request->file('imagem');
-            $path = $imagem->store('caminho/para/salvar'); // Substitua pelo caminho desejado
+            $path = $imagem->store('app/imagens/profile_picture');
 
             $user->imagem = $path;
             $user->save();
