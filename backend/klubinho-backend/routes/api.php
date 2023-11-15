@@ -19,7 +19,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 // rota para alterar os dados do usuario
 Route::post('/user/update/{id}', [AuthController::class, 'updateUserData'])->middleware('auth:sanctum');
-Route::get('/user/getUser/{id}', [AuthController::class, 'getUser'])->middleware('auth:sanctum');
+Route::get('/user/getUser/{id}', [AuthController::class, 'getUser']);
 
 // users
 Route::get('/user/getAllUsersNames/{id}', [AuthController::class, 'getAllNameByClub']); // essa será usada para a aba de reuniao de participantes

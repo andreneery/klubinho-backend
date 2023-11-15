@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Club;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\ClubIntegrantesController;
 
 class ClubController extends Controller
 {
@@ -28,6 +29,15 @@ class ClubController extends Controller
         $club->banner = $request->banner;
         $club->user_id = $request->user_id;
         $club->save();
+
+        $clubIntegrantesController = new ClubIntegrantesController();
+        $integranteRequest = new Request([
+            'user_id' => $club->user_id,
+            'club_id' => $club->id,
+            'role' => 'admin',
+        ]);
+
+        $clubIntegrantesController->create($integranteRequest);
 
         return response()->json([
             'club' => $club,
