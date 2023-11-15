@@ -123,7 +123,7 @@ class AuthController extends Controller
     public function uploadImagem($id)
     {
         if (User::where('id', $id)->exists()) {
-            $user = User::find($request->id);
+            $user = User::find($id->id);
             $user->imagem = file_get_contents($request->file('imagem')->path());
             $user->save();
             return response("Imagem salva com sucesso!", 200);
