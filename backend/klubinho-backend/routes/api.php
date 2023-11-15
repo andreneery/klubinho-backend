@@ -55,3 +55,6 @@ Route::get('/reuniao/getAllCommentsByClub/{club_id}', [ReuniaoController::class,
 
 // rota para upload de foto 
 Route::post('/upload/{id}', [AuthController::class, 'uploadImagem']);
+
+// rota para pegar a imagem do usuario
+Route::get('/user/getImage/{id}', [AuthController::class, 'getImagem']);

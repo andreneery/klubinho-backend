@@ -131,7 +131,14 @@ class AuthController extends Controller
 
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
             $imagem = $request->file('imagem');
-            $path = $imagem->store('app/imagens/profile_picture');
+            
+            // Adicione esta linha para imprimir as informações do arquivo
+            error_log(print_r($imagem, true));
+
+            $path = $imagem->store('imagens/profile_picture');
+
+            // Adicione esta linha para imprimir o caminho onde o arquivo foi armazenado
+            error_log("Path: " . $path);
 
             $user->imagem = $path;
             $user->save();
@@ -142,5 +149,16 @@ class AuthController extends Controller
         return response()->json([
             "message" => "Nenhum arquivo de imagem válido enviado."
         ], 400);
+    }
+
+    // get imagem by user id
+    public function getImagem($id)
+    {
+        $user = User::find($id);
+        //return image save on storage
+        $imagem = $user->imagem;
+        return response()->json([
+            $imagem
+        ], 200); 
     }
 }
