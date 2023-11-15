@@ -59,6 +59,7 @@ class PostController extends Controller
             $post = Post::where('club_id', $id)
             ->join('users', 'posts.user_id', '=', 'users.id')
             ->select('posts.*', 'users.name', 'users.last_name', 'users.profile_picture')
+            ->orderBy('posts.created_at', 'desc')
             ->get();
             return response($post, 200);
         } else {
