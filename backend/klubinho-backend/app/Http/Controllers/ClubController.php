@@ -57,6 +57,8 @@ class ClubController extends Controller
         }
     }
 
+    
+
     //upload banner_imagem
     public function uploadImagem(Request $request, $id)
     {

@@ -44,7 +44,13 @@ class AuthController extends Controller
     public function getUser($id)
     {
         if (User::where('id', $id)->exists()) {
-            $user = User::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            // $user = User::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            // join in table club_integrantes to get club_id and join in table club to get club name
+            $user = User::where('users.id', $id)
+            ->join('club_integrantes', 'users.id', '=', 'club_integrantes.user_id')
+            ->join('clubs', 'club_integrantes.club_id', '=', 'clubs.id')
+            ->select('users.*', 'clubs.name as club_name', 'clubs.nick_club')
+            ->get()->toJson(JSON_PRETTY_PRINT);
             return response($user, 200);
         } else {
             return response()->json([
