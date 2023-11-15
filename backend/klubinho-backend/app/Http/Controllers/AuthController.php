@@ -147,7 +147,7 @@ class AuthController extends Controller
         //return image save on storage
         $imagem = $user->imagem;
         return response()->json([
-            $imagem
+            "imagem" => $imagem
         ], 200); 
     }
 }
