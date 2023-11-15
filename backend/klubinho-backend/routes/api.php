@@ -29,6 +29,7 @@ Route::post('/club/register', [ClubController::class, 'registerClub']);
 
 //club
 Route::get('/club/getClubByNickClub/{nick_club}', [ClubController::class, 'findClubByNickClub']);
+Route::get('/club/getClubById/{id}', [ClubController::class, 'getClub']);
 
 // rotas para o post
 Route::post('/post/create', [PostController::class, 'createPost']);

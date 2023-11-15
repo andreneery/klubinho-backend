@@ -57,7 +57,18 @@ class ClubController extends Controller
         }
     }
 
-    
+    // get club by id
+    public function getClub($id)
+    {
+        if (Club::where('id', $id)->exists()) {
+            $club = Club::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($club, 200);
+        } else {
+            return response()->json([
+                "message" => "Club not found"
+            ], 404);
+        }
+    }
 
     //upload banner_imagem
     public function uploadImagem(Request $request, $id)
