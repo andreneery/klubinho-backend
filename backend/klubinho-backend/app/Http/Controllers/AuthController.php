@@ -144,10 +144,7 @@ class AuthController extends Controller
     public function getImagem($id)
     {
         $user = User::find($id);
-        //return image save on storage
-        $imagem = $user->imagem;
-        return response()->json([
-            "imagem" => $imagem
-        ], 200); 
+        //return image save on storage folder
+        return response()->download(storage_path("app/$user->imagem"));
     }
 }
