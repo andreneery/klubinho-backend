@@ -25,21 +25,28 @@ class AuthController extends Controller
         ], 201);
     }
 
-    public function login(request $request)
+    public function login(Request $request)
     {
-        $credentials = request(['email', 'password']);
+        $credentials = $request->only('email', 'password');
+        
         if (!Auth::attempt($credentials)) {
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
+        
         $user = User::where('email', $credentials['email'])->first();
+
+        // Busca o club_id associado ao usuário na tabela club_integrantes
+        $clubId = ClubIntegrantes::where('user_id', $user->id)->value('club_id');
+
         $token = $user->createToken('authToken')->plainTextToken;
+
         return response()->json([
             'user' => $user,
+            'club_id' => $clubId,
             'token' => $token
         ], 200);
     }
+
 
     public function getUser($id)
     {
