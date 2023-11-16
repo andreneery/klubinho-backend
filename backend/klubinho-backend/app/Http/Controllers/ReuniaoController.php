@@ -35,8 +35,12 @@ class ReuniaoController extends Controller
 
     public function getAllReuniaoByClub($club_id)
     {
-        if (Reuniao::where('club_id', $club_id)->exists()) {
-            $reuniao = Reuniao::where('club_id', $club_id)->get()->toJson(JSON_PRETTY_PRINT);
+        if (Reuniao::where('club_id', $club_id)->exists()) {         
+            $reuniao = Reuniao::where('club_id', $club_id)
+                        ->orderBy('data_reuniao', 'desc')
+                        ->get()
+                        ->toJson(JSON_PRETTY_PRINT);
+            
             return response($reuniao, 200);
         } else {
             return response()->json([
