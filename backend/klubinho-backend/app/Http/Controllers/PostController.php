@@ -43,7 +43,11 @@ class PostController extends Controller
     public function getAllPostByUser($id)
     {
         if(Post::where('id', $id)->exists()) {
-            $post = Post::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            $post = Post::where('club_id', $id)
+            ->join('users', 'posts.user_id', '=', 'users.id')
+            ->select('posts.*', 'users.name', 'users.last_name', 'users.imagem')
+            ->orderBy('posts.updated_at', 'desc')
+            ->get();
             return response($post, 200);
         } else {
             return response()->json([

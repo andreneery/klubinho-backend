@@ -18,7 +18,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
 // rota para alterar os dados do usuario
-Route::post('/user/update/{id}', [AuthController::class, 'updateUserData'])->middleware('auth:sanctum');
+Route::post('/user/update/{id}', [AuthController::class, 'updateUserData']);
 Route::get('/user/getUser/{id}', [AuthController::class, 'getUser']);
 
 // users
