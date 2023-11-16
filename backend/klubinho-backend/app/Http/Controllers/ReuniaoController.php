@@ -100,4 +100,33 @@ class ReuniaoController extends Controller
             ], 404);
         }
     }
+
+    // edit reuniao by id
+    public function editReuniao(Request $request, $id)
+    {
+        if (Reuniao::where('id', $id)->exists()) {
+            $reuniao = Reuniao::find($id);
+            $reuniao->titulo = $request->titulo;
+            $reuniao->descricao = $request->descricao;
+            $reuniao->link = $request->link;
+            $reuniao->data_reuniao = $request->data_reuniao;
+            $reuniao->hora_reuniao = $request->hora_reuniao;
+            $reuniao->livro = $request->livro;
+            $reuniao->autor = $request->autor;
+
+            $participantsArray = $request->participants;
+            $participantsString = implode(',', $participantsArray);
+            $reuniao->participants_name = $participantsString;
+
+            $reuniao->save();
+
+            return response()->json([
+                "message" => "Reuniao updated successfully"
+            ], 200);
+        } else {
+            return response()->json([
+                "message" => "Reuniao not found"
+            ], 404);
+        }
+    }
 }

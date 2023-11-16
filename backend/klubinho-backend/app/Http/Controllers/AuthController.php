@@ -161,4 +161,25 @@ class AuthController extends Controller
         return response()->file(storage_path("app/$user->imagem"));
         // return response()->download(storage_path("app/$user->imagem"));
     }
+
+    public function editUser(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->phone_number = $request->phone_number;
+        $user->birthday_date = $request->birthday_date;
+        $user->email = $request->email;
+        $user->bio = $request->bio;
+        // upload imagem in storage
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            $imagem = $request->file('imagem');
+            $path = $imagem->store('imagens/profile_picture');
+            $user->imagem = $path;
+        }
+        $user->save();
+        return response()->json([
+            "message" => "User record updated"
+        ], 201);
+    }
 }

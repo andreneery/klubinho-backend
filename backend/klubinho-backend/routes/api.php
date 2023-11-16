@@ -66,3 +66,9 @@ Route::post('/uploadBanner/{id}', [ClubController::class, 'uploadImagem']);
 
 // rota para pegar a imagem do club
 Route::get('/club/getImage/{id}', [ClubController::class, 'getImagem']);
+
+// rota para editar user
+Route::post('/user/edit/{id}', [AuthController::class, 'editUser']);
+
+//edit reuniao
+Route::post('/reuniao/edit/{id}', [ReuniaoController::class, 'editReuniao']);
