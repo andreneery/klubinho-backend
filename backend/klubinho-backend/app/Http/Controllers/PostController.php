@@ -42,8 +42,8 @@ class PostController extends Controller
     // geat all post by user
     public function getAllPostByUser($id)
     {
-        if(Post::where('id', $id)->exists()) {
-            $post = Post::where('club_id', $id)
+        if(Post::where('user_id', $id)->exists()) {
+            $post = Post::where('user_id', $id)
             ->join('users', 'posts.user_id', '=', 'users.id')
             ->select('posts.*', 'users.name', 'users.last_name', 'users.imagem')
             ->orderBy('posts.updated_at', 'desc')
