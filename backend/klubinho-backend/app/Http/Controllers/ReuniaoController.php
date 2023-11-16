@@ -48,15 +48,26 @@ class ReuniaoController extends Controller
     // get reuniao by id
     public function getReuniao($id)
     {
-        if (Reuniao::where('id', $id)->exists()) {
-            $reuniao = Reuniao::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
-            return response($reuniao, 200);
+        $reuniao = Reuniao::find($id);
+
+        if ($reuniao) {
+            // Transformar a string de participantes em um array
+            $participantsArray = explode(',', $reuniao->participants_name);
+            
+            // Adicionar o array de participantes aos dados da reunião
+            $reuniaoData = $reuniao->toArray();
+            $reuniaoData['participants_name'] = $participantsArray;
+
+            return response()->json([
+                "reuniao" => $reuniaoData
+            ], 200);
         } else {
             return response()->json([
                 "message" => "Reuniao not found"
             ], 404);
         }
     }
+
 
     public function createComment(Request $request)
     {
