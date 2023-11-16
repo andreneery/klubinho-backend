@@ -19,5 +19,6 @@ class Reuniao extends Model
         'autor',
         'club_id',
         'user_id',
+        'participants_name'
     ];
 }

@@ -20,6 +20,11 @@ class ReuniaoController extends Controller
         $reuniao->autor = $request->autor;
         $reuniao->club_id = $request->club_id;
         $reuniao->user_id = $request->user_id;
+
+        $participantsArray = $request->participants;
+        $participantsString = implode(',', $participantsArray);
+        $reuniao->participants_name = $participantsString;
+
         $reuniao->save();
 
         return response()->json([
