@@ -120,6 +120,7 @@ class ReuniaoController extends Controller
                 "message" => "Reuniao updated successfully"
             ], 200);
         } else {
+            dd($request->all()); 
             return response()->json([
                 "message" => "Reuniao not found"
             ], 404);
