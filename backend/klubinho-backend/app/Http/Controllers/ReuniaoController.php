@@ -114,10 +114,6 @@ class ReuniaoController extends Controller
             $reuniao->livro = $request->livro;
             $reuniao->autor = $request->autor;
 
-            $participantsArray = $request->participants;
-            $participantsString = implode(',', $participantsArray);
-            $reuniao->participants_name = $participantsString;
-
             $reuniao->save();
 
             return response()->json([
