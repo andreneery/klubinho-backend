@@ -67,4 +67,21 @@ class ClubIntegrantesController extends Controller
         }
     }
 
+    public function getNumberOfIntegrantesByClub($club_id)
+    {
+        $numberOfIntegrantes = ClubIntegrantes::where('club_id', $club_id)->count();
+
+        if ($numberOfIntegrantes > 0) {
+            return response()->json([
+                "club_id" => $club_id,
+                "number_of_integrantes" => $numberOfIntegrantes
+            ], 200);
+        } else {
+            return response()->json([
+                "message" => "Club integrantes not found for club_id: " . $club_id
+            ], 404);
+        }
+    }
+
+
 }

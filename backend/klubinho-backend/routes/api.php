@@ -41,6 +41,7 @@ Route::get('/post/getAllPostByClub/{id}', [PostController::class, 'getAllPostByC
 Route::post('/clubIntegrantes/create', [ClubIntegrantesController::class, 'create']);
 Route::get('/clubIntegrantes/getClubIntegrantes/{club_id}', [ClubIntegrantesController::class, 'getAllIntegrantesByClub']);
 Route::get('/clubIntegrantes/getClubIntegrantesWithUser/{club_id}', [ClubIntegrantesController::class, 'getAllIntegrantesWithUserByClub']);
+Route::get('/clubIntegrantes/getTotalIntegrantes/{club_id}', [ClubIntegrantesController::class, 'getNumberOfIntegrantesByClub']);
 
 // enquete
 Route::post('/enquete/create', [EnquetesController::class, 'create']);
