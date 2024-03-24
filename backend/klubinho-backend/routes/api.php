@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ClubIntegrantesController;
 use App\Http\Controllers\EnquetesController;
 use App\Http\Controllers\ReuniaoController;
+use App\Http\Controllers\CommentsController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -36,6 +37,11 @@ Route::post('/post/create', [PostController::class, 'createPost']);
 Route::post('/post/delete/{id}', [PostController::class, 'deletePost']);
 Route::get('/post/getAllPostByUser/{id}', [PostController::class, 'getAllPostByUser']);
 Route::get('/post/getAllPostByClub/{id}', [PostController::class, 'getAllPostByClub']);
+
+// rotas para comentários
+Route::post('/comment/create', [CommentsController::class, 'createComment']);
+Route::post('/comment/delete/{id}', [CommentsController::class, 'deleteComment']);
+Route::get('/comment/getAllCommentsByPost/{id}', [CommentsController::class, 'getAllCommentsByPost']);
 
 // clubIntegrantes
 Route::post('/clubIntegrantes/create', [ClubIntegrantesController::class, 'create']);
