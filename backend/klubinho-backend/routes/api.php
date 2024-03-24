@@ -43,6 +43,12 @@ Route::post('/comment/create', [CommentsController::class, 'createComment']);
 Route::post('/comment/delete/{id}', [CommentsController::class, 'deleteComment']);
 Route::get('/comment/getAllCommentsByPost/{id}', [CommentsController::class, 'getAllCommentsByPost']);
 
+// rotas para likes
+Route::post('/like/create', [PostController::class, 'createLike']);
+Route::get('/like/getAllLikesByPost/{post_id}', [PostController::class, 'getAllLikesByPost']);
+Route::get('/like/countLikes/{post_id}', [PostController::class, 'countLikes']);
+
+
 // clubIntegrantes
 Route::post('/clubIntegrantes/create', [ClubIntegrantesController::class, 'create']);
 Route::get('/clubIntegrantes/getClubIntegrantes/{club_id}', [ClubIntegrantesController::class, 'getAllIntegrantesByClub']);

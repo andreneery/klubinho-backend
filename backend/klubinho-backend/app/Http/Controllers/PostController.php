@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Likes;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -71,5 +72,49 @@ class PostController extends Controller
                 "message" => "Post not found"
             ], 404);
         }
+    }
+
+    // likes
+
+    public function likePost($id)
+    {
+        $user = Auth::user();
+        $post = Likes::find($id);
+        $like = $post->likes()->where('user_id', $user->id)->first();
+        if($like) {
+            $like->delete();
+            return response()->json([
+                "message" => "Like removed"
+            ], 202);
+        } else {
+            $post->likes()->create([
+                'user_id' => $user->id,
+                'liked' => true
+            ]);
+            return response()->json([
+                "message" => "Like added"
+            ], 201);
+        }
+    }
+
+    //get all users liked a post
+    public function getUsersLiked($id)
+    {
+        $post = Likes::find($post_id);
+        $users = $post->likes()->where('liked', true)
+        ->join('users', 'likes.user_id', '=', 'users.id')
+        ->select('users.*')
+        ->get();
+        return response($users, 200);
+    }
+
+    //count likes in a post
+    public function countLikes($id)
+    {
+        $post = Likes::find($post_id);
+        $likes = $post->likes()->where('liked', true)->count();
+        return response()->json([
+            "likes" => $likes
+        ], 200);
     }
 }
