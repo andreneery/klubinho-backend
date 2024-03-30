@@ -44,7 +44,7 @@ Route::post('/comment/delete/{id}', [CommentsController::class, 'deleteComment']
 Route::get('/comment/getAllCommentsByPost/{id}', [CommentsController::class, 'getAllCommentsByPost']);
 
 // rotas para likes
-Route::post('/like/create', [PostController::class, 'createLike']);
+Route::post('/like/create/{post_id}', [PostController::class, 'findOrCreateLike']);
 Route::get('/like/getAllLikesByPost/{post_id}', [PostController::class, 'getAllLikesByPost']);
 Route::get('/like/countLikes/{post_id}', [PostController::class, 'countLikes']);
 

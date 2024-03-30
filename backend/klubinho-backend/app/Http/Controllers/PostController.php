@@ -76,29 +76,25 @@ class PostController extends Controller
 
     // likes
 
-    public function likePost($id)
+    public function findOrCreateLike($post_id)
     {
-        $user = Auth::user();
-        $post = Likes::find($id);
-        $like = $post->likes()->where('user_id', $user->id)->first();
+        $like = Likes::where('user_id', User::id())
+        ->where('post_id', $post_id)
+        ->first();
         if($like) {
-            $like->delete();
-            return response()->json([
-                "message" => "Like removed"
-            ], 202);
+            return $like;
         } else {
-            $post->likes()->create([
-                'user_id' => $user->id,
-                'liked' => true
-            ]);
-            return response()->json([
-                "message" => "Like added"
-            ], 201);
+            $like = new Likes;
+            $like->user_id = User::id();
+            $like->post_id = $post_id;
+            $like->liked = true;
+            $like->save();
+            return $like;
         }
     }
 
     //get all users liked a post
-    public function getUsersLiked($id)
+    public function getUsersLiked($post_id)
     {
         $post = Likes::find($post_id);
         $users = $post->likes()->where('liked', true)
@@ -109,7 +105,7 @@ class PostController extends Controller
     }
 
     //count likes in a post
-    public function countLikes($id)
+    public function countLikes($post_id)
     {
         $post = Likes::find($post_id);
         $likes = $post->likes()->where('liked', true)->count();
