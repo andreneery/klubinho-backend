@@ -9,6 +9,7 @@ use App\Http\Controllers\ClubIntegrantesController;
 use App\Http\Controllers\EnquetesController;
 use App\Http\Controllers\ReuniaoController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\CalendarController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -84,4 +85,10 @@ Route::get('/club/getImage/{id}', [ClubController::class, 'getImagem']);
 Route::post('/user/edit/{id}', [AuthController::class, 'editUser']);
 
 //edit reuniao
-Route::post('/reuniao/edit/{id}', [ReuniaoController::class, 'editReuniao']);
+Route::post('/reuniao/edt/{id}', [ReuniaoController::class, 'editReuniao']);
+
+//  Calendario
+Route::post('/calendar/create', [CalendarController::class, 'store']);
+Route::get('/calendar/getAllEventsByClub/{club_id}', [CalendarController::class, 'getAllEventsByClub']);
+Route::post('/calendar/delete/{id}', [CalendarController::class, 'destroy']);
+Route::post('/calendar/update/{id}', [CalendarController::class, 'update']);
