@@ -44,13 +44,9 @@ class CommentsController extends Controller
             $comment = Comments::where('post_id', $id)
             ->join('users', 'comments.user_id', '=', 'users.id')
             ->select('comments.*', 'users.name', 'users.last_name', 'users.imagem')
-            ->orderBy('comments.updated_at', 'desc')
+            ->orderBy('comments.updated_at', 'asc')
             ->get();
             return response($comment, 200);
-        } else {
-            return response()->json([
-                "message" => "Comment not found"
-            ], 404);
-        }
+        } 
     }
 }
