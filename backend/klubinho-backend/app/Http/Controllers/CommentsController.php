@@ -47,6 +47,8 @@ class CommentsController extends Controller
             ->orderBy('comments.updated_at', 'asc')
             ->get();
             return response($comment, 200);
-        } 
+        } else {
+            return [];
+        }
     }
 }
