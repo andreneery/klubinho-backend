@@ -37,13 +37,15 @@ class AuthController extends Controller
 
         // Busca o club_id associado ao usuário na tabela club_integrantes
         $clubId = ClubIntegrantes::where('user_id', $user->id)->value('club_id');
+        $role = ClubIntegrantes::where('user_id', $user->id)->value('role');
 
         $token = $user->createToken('authToken')->plainTextToken;
 
         return response()->json([
             'user' => $user,
             'club_id' => $clubId,
-            'token' => $token
+            'token' => $token,
+            'role' => $role
         ], 200);
     }
 
