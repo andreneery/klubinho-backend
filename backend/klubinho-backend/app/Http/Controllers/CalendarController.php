@@ -74,4 +74,17 @@ class CalendarController extends Controller
             ], 404);
           }
     }
+
+    // get calendar by id
+    public function showById($id)
+    {
+        if (Calendar::where('id', $id)->exists()) {
+            $calendar = Calendar::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($calendar, 200);
+        } else {
+            return response()->json([
+                "message" => "Event not found"
+            ], 404);
+        }
+    }
 }

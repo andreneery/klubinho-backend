@@ -92,3 +92,4 @@ Route::post('/calendar/create', [CalendarController::class, 'store']);
 Route::get('/calendar/getAllEventsByClub/{club_id}', [CalendarController::class, 'getAllEventsByClub']);
 Route::post('/calendar/delete/{id}', [CalendarController::class, 'destroy']);
 Route::post('/calendar/update/{id}', [CalendarController::class, 'update']);
+Route::get('/calendar/getById/{id}', [CalendarController::class, 'showById']);
