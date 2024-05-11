@@ -126,4 +126,21 @@ class ReuniaoController extends Controller
             ], 404);
         }
     }
+
+    //delete reuniao by id
+    public function updateReuniao(Request $request, $id)
+    {
+        if (Reuniao::where('id', $id)->exists()) {
+            $reuniao = Reuniao::find($id);
+            $reuniao->delete();
+
+            return response()->json([
+                "message" => "Reuniao deleted"
+            ], 202);
+        } else {
+            return response()->json([
+                "message" => "Reuniao not found"
+            ], 404);
+        }
+    }
 }

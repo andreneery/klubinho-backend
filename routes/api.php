@@ -61,6 +61,8 @@ Route::get('/clubIntegrantes/getTotalIntegrantes/{club_id}', [ClubIntegrantesCon
 Route::post('/enquete/create', [EnquetesController::class, 'create']);
 Route::get('/enquete/getAllEnquetesByClub/{club_id}', [EnquetesController::class, 'getAllEnquetesByClub']);
 Route::post('/enquete/alterStatusEnquete/{id}', [EnquetesController::class, 'alterStatusEnquete']);
+Route::post('/enquete/updateEnquete/{id}', [EnquetesController::class, 'updateEnquete']);
+Route::post('/enquete/delete/{id}', [EnquetesController::class, 'deleteEnquete']);
 
 // rotas para a reuniao
 Route::post('/reuniao/create', [ReuniaoController::class, 'createReuniao']);
@@ -68,6 +70,8 @@ Route::get('/reuniao/getAllReuniaoByClub/{club_id}', [ReuniaoController::class, 
 Route::post('/reuniao/createComment', [ReuniaoController::class, 'createComment']);
 Route::get('/reuniao/getReuniao/{id}', [ReuniaoController::class, 'getReuniao']);
 Route::get('/reuniao/getAllCommentsByReuniao/{reuniao_id}', [ReuniaoController::class, 'getAllCommentsByReuniao']);
+Route::post('/reuniao/edt/{id}', [ReuniaoController::class, 'editReuniao']);
+Route::post('/reuniao/delete/{id}', [ReuniaoController::class, 'deleteReuniao']);
 
 
 // rota para upload de foto 
@@ -84,9 +88,6 @@ Route::get('/club/getImage/{id}', [ClubController::class, 'getImagem']);
 
 // rota para editar user
 Route::post('/user/edit/{id}', [AuthController::class, 'editUser']);
-
-//edit reuniao
-Route::post('/reuniao/edt/{id}', [ReuniaoController::class, 'editReuniao']);
 
 //  Calendario
 Route::post('/calendar/create', [CalendarController::class, 'store']);

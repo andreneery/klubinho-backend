@@ -52,4 +52,41 @@ class EnquetesController extends Controller
             ], 404);
         }
     }
+
+    //edit enquete
+    public function updateEnquete(Request $request, $id)
+    {
+        if (Enquetes::where('id', $id)->exists()) {
+            $enquete = Enquetes::find($id);
+            $enquete->title = is_null($request->title) ? $enquete->title : $request->title;
+            $enquete->description = is_null($request->description) ? $enquete->description : $request->description;
+            $enquete->votes = is_null($request->votes) ? $enquete->votes : $request->votes;
+            $enquete->status = is_null($request->status) ? $enquete->status : $request->status;
+            $enquete->save();
+
+            return response()->json([
+                "message" => "Enquete updated successfully"
+            ], 200);
+        } else {
+            return response()->json([
+                "message" => "Enquete not found"
+            ], 404);
+        }
+    }
+
+    public function destroy($id)
+    {
+        if (Enquetes::where('id', $id)->exists()) {
+            $enquete = Enquetes::find($id);
+            $enquete->delete();
+
+            return response()->json([
+                "message" => "Enquete deleted"
+            ], 202);
+        } else {
+            return response()->json([
+                "message" => "Enquete not found"
+            ], 404);
+        }
+    }
 }
