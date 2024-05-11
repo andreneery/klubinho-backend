@@ -97,3 +97,4 @@ Route::get('/calendar/getById/{id}', [CalendarController::class, 'showById']);
 
 // eventos
 Route::get('eventos/{club_id}', [EventosController::class, 'index']);
+Route::get('/eventos/{club_id}/{data_evento}', [EventosController::class, 'getByClubIdAndDate']);  // exemplo de como fazer a request: GET /eventos/123?data_evento=2024-05-15
