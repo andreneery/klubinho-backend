@@ -10,6 +10,7 @@ use App\Http\Controllers\EnquetesController;
 use App\Http\Controllers\ReuniaoController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\EventosController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -93,3 +94,6 @@ Route::get('/calendar/getAllEventsByClub/{club_id}', [CalendarController::class,
 Route::post('/calendar/delete/{id}', [CalendarController::class, 'destroy']);
 Route::post('/calendar/update/{id}', [CalendarController::class, 'update']);
 Route::get('/calendar/getById/{id}', [CalendarController::class, 'showById']);
+
+// eventos
+Route::get('eventos/{club_id}', [EventosController::class, 'index']);
