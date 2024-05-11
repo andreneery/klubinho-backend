@@ -83,5 +83,16 @@ class ClubIntegrantesController extends Controller
         }
     }
 
+    public function getRoleByClubAndUser($club_id, $user_id)
+    {
+        if (ClubIntegrantes::where('club_id', $club_id)->where('user_id', $user_id)->exists()) {
+            $role = ClubIntegrantes::where('club_id', $club_id)->where('user_id', $user_id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($role, 200);
+        } else {
+            return response()->json([
+                "message" => "Role not found"
+            ], 404);
+        }
+    }
 
 }
