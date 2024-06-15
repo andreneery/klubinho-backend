@@ -64,6 +64,10 @@ Route::get('/enquete/getAllEnquetesByClub/{club_id}', [EnquetesController::class
 Route::post('/enquete/alterStatusEnquete/{id}', [EnquetesController::class, 'alterStatusEnquete']);
 Route::post('/enquete/updateEnquete/{id}', [EnquetesController::class, 'updateEnquete']);
 Route::post('/enquete/delete/{id}', [EnquetesController::class, 'deleteEnquete']);
+Route::post('/enquete/createOpcao', [EnquetesController::class, 'createOpcao']);
+Route::get('/enquete/getOpcoes/{enquete_id}', [EnquetesController::class, 'getOpcoesByEnquete']);
+Route::delete('/enquete/deleteOpcao/{id}', [EnquetesController::class, 'destroyOpcao']);
+Route::post('/enquete/updateOpcao/{id}', [EnquetesController::class, 'updateOpcao']);
 
 // rotas para a reuniao
 Route::post('/reuniao/create', [ReuniaoController::class, 'createReuniao']);

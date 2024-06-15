@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Enquetes;
+use App\Models\EnquetesOpcoes;
 
 class EnquetesController extends Controller
 {
@@ -14,8 +15,6 @@ class EnquetesController extends Controller
         $enquete->club_id = $request->club_id;
         $enquete->title = $request->title;
         $enquete->description = $request->description;
-        $enquete->votes = $request->votes;
-        $enquete->status = $request->status;
         $enquete->save();
         return response()->json([
             "message" => "Enquete record created"
@@ -60,8 +59,6 @@ class EnquetesController extends Controller
             $enquete = Enquetes::find($id);
             $enquete->title = is_null($request->title) ? $enquete->title : $request->title;
             $enquete->description = is_null($request->description) ? $enquete->description : $request->description;
-            $enquete->votes = is_null($request->votes) ? $enquete->votes : $request->votes;
-            $enquete->status = is_null($request->status) ? $enquete->status : $request->status;
             $enquete->save();
 
             return response()->json([
@@ -89,4 +86,74 @@ class EnquetesController extends Controller
             ], 404);
         }
     }
+
+    public function createOpcao(Request $request)
+    {
+        $opcao = new EnquetesOpcoes;
+        $opcao->enquete_id = $request->enquete_id;
+        $opcao->title = $request->title;
+        $opcao->description = $request->description;
+        $opcao->save();
+        return response()->json([
+            "message" => "Opcao record created"
+        ], 201);
+    }
+
+    public function getOpcoesByEnquete($enquete_id)
+    {
+        if (EnquetesOpcoes::where('enquete_id', $enquete_id)->exists()) {
+            $opcao = EnquetesOpcoes::where('enquete_id', $enquete_id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($opcao, 200);
+        } else {
+            return response()->json([
+                "message" => "Opcao not found"
+            ], 404);
+        }
+    }
+
+    public function destroyOpcao($id)
+    {
+        if (EnquetesOpcoes::where('id', $id)->exists()) {
+            $opcao = EnquetesOpcoes::find($id);
+            $opcao->delete();
+
+            return response()->json([
+                "message" => "Opcao deleted"
+            ], 202);
+        } else {
+            return response()->json([
+                "message" => "Opcao not found"
+            ], 404);
+        }
+    }
+
+    public function updateOpcao(Request $request, $id)
+    {
+        if (EnquetesOpcoes::where('id', $id)->exists()) {
+            $opcao = EnquetesOpcoes::find($id);
+            $opcao->title = is_null($request->title) ? $opcao->title : $request->title;
+            $opcao->description = is_null($request->description) ? $opcao->description : $request->description;
+            $opcao->save();
+
+            return response()->json([
+                "message" => "Opcao updated successfully"
+            ], 200);
+        } else {
+            return response()->json([
+                "message" => "Opcao not found"
+            ], 404);
+        }
+    }
+
+    public function getAllOpcoesByEnquete($enquete_id)
+    {
+        if (EnquetesOpcoes::where('enquete_id', $enquete_id)->exists()) {
+            $opcao = EnquetesOpcoes::where('enquete_id', $enquete_id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($opcao, 200);
+        } else {
+            return response()->json([
+                "message" => "Opcao not found"
+            ], 404);
+        }
+    } 
 }

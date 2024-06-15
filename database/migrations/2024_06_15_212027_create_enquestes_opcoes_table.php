@@ -9,18 +9,17 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('enquetes', function (Blueprint $table) {
+        Schema::create('enquetes_opcoes', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->notNullable();
+            $table->string('titulo')->nullable();
             $table->string('description')->nullable();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('club_id')->constrained('clubs');
+            $table->foreignId('enquete_id')->constrained('enquetes');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('enquetes');
+        Schema::dropIfExists('enquetes_opcoes');
     }
 };
