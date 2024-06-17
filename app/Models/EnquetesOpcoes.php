@@ -11,7 +11,7 @@ class EnquetesOpcoes extends Model
 
     protected $fillable = [
         'enquete_id',
-        'title',
+        'titulo',
         'description',
     ];
 }

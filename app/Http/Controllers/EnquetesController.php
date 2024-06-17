@@ -17,6 +17,7 @@ class EnquetesController extends Controller
         $enquete->description = $request->description;
         $enquete->save();
         return response()->json([
+            "enquete:" => $enquete,
             "message" => "Enquete record created"
         ], 201);
     }
@@ -91,7 +92,7 @@ class EnquetesController extends Controller
     {
         $opcao = new EnquetesOpcoes;
         $opcao->enquete_id = $request->enquete_id;
-        $opcao->title = $request->title;
+        $opcao->titulo = $request->titulo;
         $opcao->description = $request->description;
         $opcao->save();
         return response()->json([
